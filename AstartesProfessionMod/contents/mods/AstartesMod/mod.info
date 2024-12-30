@@ -1,0 +1,7 @@
+-- File: mod.info
+-- This file contains metadata about the mod
+
+name=Astartes Profession
+poster=poster.png
+id=AstartesProfessionMod
+version=1.0

@@ -1,0 +1,8 @@
+version=1
+id=3395698011
+title=Space Marine Profesion
+description=Space Marine Mod Profession to go along with other mods
+description=
+description=Requires Profession Framework
+tags=Build 41;Military;Silly/Fun
+visibility=public
