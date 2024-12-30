@@ -1,8 +1,15 @@
 version=1
 id=3395698011
-title=Space Marine Profesion
+title=Space Marine Profession
 description=Space Marine Mod Profession to go along with other mods
 description=
 description=Requires Profession Framework
-tags=Build 41;Military;Silly/Fun
+description=
+description=
+description=I recommend the Bolter, Chainsword, Power Sword, and Space Marine Armor mods since I made this mod playing with these items
+description=
+description=Traits include "Strong", "Fit", "FastHealer", "Brave", "Resilient", "Athletic", "Outdoorsman", "Desensitized", "ThickSkinned", "Hardy", "FastLearner", "Lucky", "AdrenalineJunkie", "KeenHearing"
+description=
+description=Some of them don't show up I'm still trying to figure out why that is.
+tags=Build 41;Military;Silly/Fun;Traits
 visibility=public

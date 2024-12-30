@@ -6,11 +6,19 @@ local function initAstartesTraits()
 
     ProfessionFramework.addTrait('FastHealer', {
         name = "Fast Healer",
-        description = "Enhanced healing abilities, regenerating health faster than normal.",
-        cost = 0,
+        description = "Enhanced healing abilities, regenerating health gradually over time.",
+        cost = -1,
         onTick = function(player, _)
             local bodyDamage = player:getBodyDamage()
-            bodyDamage:RestoreToFullHealth()
+            local modData = player:getModData()
+            if not modData.lastHealTick then
+                modData.lastHealTick = 0
+            end
+            local currentTick = getGameTime():getWorldAgeHours()
+            if currentTick - modData.lastHealTick >= 0.5 then  -- Heal every 30 in-game minutes
+                bodyDamage:AddHealth(0.1)  -- Gradual healing
+                modData.lastHealTick = currentTick
+            end
         end
     })
 
@@ -18,10 +26,11 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('SuperhumanBoost', {
         name = "Superhuman Boost",
         description = "Massively increased strength and fitness.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
-            player:getModData().superStrength = true
-            player:getModData().superSpeed = true
+            local modData = player:getModData()
+            modData.superStrength = true
+            modData.superSpeed = true
             player:getStats():setStrength(10)  -- Max out strength stat
             player:getStats():setFitness(10)  -- Max out fitness stat
         end
@@ -31,7 +40,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('ThickSkinned', {
         name = "Thick Skinned",
         description = "Reduced chance of scratches and bites breaking the skin.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("ThickSkinned")
         end
@@ -40,7 +49,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('Hardy', {
         name = "Hardy",
         description = "Recovers from exhaustion more quickly.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("Hardy")
         end
@@ -49,7 +58,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('Outdoorsman', {
         name = "Outdoorsman",
         description = "Less prone to weather-related ailments.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("Outdoorsman")
         end
@@ -58,7 +67,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('Desensitized', {
         name = "Desensitized",
         description = "Immune to panic.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("Desensitized")
         end
@@ -67,7 +76,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('FastLearner', {
         name = "Fast Learner",
         description = "Gains experience points faster in all skills.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("FastLearner")
         end
@@ -76,7 +85,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('Lucky', {
         name = "Lucky",
         description = "Increased chance of finding rare items.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("Lucky")
         end
@@ -85,7 +94,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('AdrenalineJunkie', {
         name = "Adrenaline Junkie",
         description = "Moves faster when highly panicked.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("AdrenalineJunkie")
         end
@@ -94,7 +103,7 @@ local function initAstartesTraits()
     ProfessionFramework.addTrait('KeenHearing', {
         name = "Keen Hearing",
         description = "Increased range for hearing sounds and detecting threats.",
-        cost = 0,
+        cost = -1,
         onStart = function(player)
             player:getTraits():add("KeenHearing")
         end
